@@ -21,7 +21,7 @@ public class SchoolClassService {
         return repository.findAll();
     }
 
-    public SchoolClass getById(Long id) {
+    public SchoolClass getById(java.util.UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Class not found with id " + id));
     }
@@ -30,7 +30,7 @@ public class SchoolClassService {
         return repository.save(c);
     }
 
-    public SchoolClass update(Long id, SchoolClass data) {
+    public SchoolClass update(java.util.UUID id, SchoolClass data) {
         SchoolClass existing = getById(id);
         existing.setName(data.getName());
         existing.setYearStart(data.getYearStart());
@@ -38,7 +38,7 @@ public class SchoolClassService {
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(java.util.UUID id) {
         repository.deleteById(id);
     }
 }

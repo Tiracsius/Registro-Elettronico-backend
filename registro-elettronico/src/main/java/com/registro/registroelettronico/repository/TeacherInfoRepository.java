@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for TeacherInfo entities.
  */
 @Repository
-public interface TeacherInfoRepository extends JpaRepository<TeacherInfo, Long> {
+public interface TeacherInfoRepository extends JpaRepository<TeacherInfo, java.util.UUID> {
 }

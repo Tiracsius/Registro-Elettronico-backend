@@ -21,7 +21,7 @@ public class ParentService {
         return repository.findAll();
     }
 
-    public ParentInfo getById(Long id) {
+    public ParentInfo getById(java.util.UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Parent not found with id " + id));
     }
@@ -30,16 +30,15 @@ public class ParentService {
         return repository.save(parent);
     }
 
-    public ParentInfo update(Long id, ParentInfo data) {
+    public ParentInfo update(java.util.UUID id, ParentInfo data) {
         ParentInfo existing = getById(id);
         existing.setFirstName(data.getFirstName());
         existing.setLastName(data.getLastName());
         existing.setEmail(data.getEmail());
-        existing.setCardId(data.getCardId());
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(java.util.UUID id) {
         repository.deleteById(id);
     }
 }

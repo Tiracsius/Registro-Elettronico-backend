@@ -18,18 +18,20 @@ import java.time.LocalDate;
 @Builder
 public class VoteRecord {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     /** Numeric representation of the grade (e.g. 6.5). */
     private Double vote;
 
     /** Date when the grade was recorded. */
-    private LocalDate date;
+    private java.time.LocalDate date;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_class_id")
-    private StudentClass studentClass;
+    @JoinColumn(name = "student_id")
+    private StudentInfo student;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")

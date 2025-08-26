@@ -18,12 +18,14 @@ import java.time.LocalDateTime;
 @Builder
 public class Reprimand {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_class_id")
-    private StudentClass studentClass;
+    @JoinColumn(name = "student_id")
+    private StudentInfo student;
 
     /** Short title summarizing the reason for the reprimand. */
     private String title;
@@ -36,5 +38,5 @@ public class Reprimand {
     @JoinColumn(name = "subject_class_id")
     private SubjectClass subjectClass;
 
-    private LocalDateTime createdAt;
+    private java.time.LocalDateTime createdAt;
 }

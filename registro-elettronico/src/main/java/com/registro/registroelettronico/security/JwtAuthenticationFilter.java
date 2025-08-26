@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * Filter that validates JWT tokens on each request. It extracts the token
- * from the Authorization header (prefix " Bearer ") and, if valid,
+ * from the Authorization header (prefix "Bearer ") and, if valid,
  * populates the Spring Security context with the authenticated user.
  */
 @Component

@@ -18,18 +18,20 @@ import java.time.LocalDateTime;
 @Builder
 public class Justification {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private ParentInfo parent;
+    // No direct reference to a parent is stored. The parent who submits a
+    // justification can be inferred via the associated presence record and
+    // student relationship.
 
     @Column(columnDefinition = "TEXT")
     private String message;
 
     /** Timestamp when the justification was created. */
-    private LocalDateTime createdAt;
+    private java.time.LocalDateTime createdAt;
 
     /** The presence record this justification refers to. */
     @OneToOne(optional = false, fetch = FetchType.LAZY)

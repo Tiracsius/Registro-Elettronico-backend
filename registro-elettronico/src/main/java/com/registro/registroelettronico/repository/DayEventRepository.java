@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for DayEvent entities.
  */
 @Repository
-public interface DayEventRepository extends JpaRepository<DayEvent, Long> {
+public interface DayEventRepository extends JpaRepository<DayEvent, java.util.UUID> {
 }

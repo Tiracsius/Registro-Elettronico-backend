@@ -24,7 +24,7 @@ public class SubjectController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Subject> getById(@PathVariable Long id) {
+    public ResponseEntity<Subject> getById(@PathVariable java.util.UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -34,12 +34,12 @@ public class SubjectController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Subject> update(@PathVariable Long id, @RequestBody Subject data) {
+    public ResponseEntity<Subject> update(@PathVariable java.util.UUID id, @RequestBody Subject data) {
         return ResponseEntity.ok(service.update(id, data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

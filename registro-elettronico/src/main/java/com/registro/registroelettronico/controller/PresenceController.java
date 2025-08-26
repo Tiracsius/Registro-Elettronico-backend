@@ -24,7 +24,7 @@ public class PresenceController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PresenceRecord> getById(@PathVariable Long id) {
+    public ResponseEntity<PresenceRecord> getById(@PathVariable java.util.UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -34,12 +34,12 @@ public class PresenceController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PresenceRecord> update(@PathVariable Long id, @RequestBody PresenceRecord data) {
+    public ResponseEntity<PresenceRecord> update(@PathVariable java.util.UUID id, @RequestBody PresenceRecord data) {
         return ResponseEntity.ok(service.update(id, data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

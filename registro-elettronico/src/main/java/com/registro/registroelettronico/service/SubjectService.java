@@ -21,7 +21,7 @@ public class SubjectService {
         return repository.findAll();
     }
 
-    public Subject getById(Long id) {
+    public Subject getById(java.util.UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Subject not found with id " + id));
     }
@@ -30,13 +30,13 @@ public class SubjectService {
         return repository.save(subject);
     }
 
-    public Subject update(Long id, Subject data) {
+    public Subject update(java.util.UUID id, Subject data) {
         Subject existing = getById(id);
         existing.setName(data.getName());
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(java.util.UUID id) {
         repository.deleteById(id);
     }
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for TestEntity entities.
  */
 @Repository
-public interface TestRepository extends JpaRepository<TestEntity, Long> {
+public interface TestRepository extends JpaRepository<TestEntity, java.util.UUID> {
 }

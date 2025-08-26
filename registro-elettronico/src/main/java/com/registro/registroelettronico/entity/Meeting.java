@@ -19,8 +19,10 @@ import java.time.LocalDate;
 @Builder
 public class Meeting {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
@@ -31,8 +33,8 @@ public class Meeting {
     private SubjectClass subjectClass;
 
     @Enumerated(EnumType.STRING)
-    private MeetingStatus status;
+    private com.registro.registroelettronico.enums.MeetingStatus status;
 
     /** Scheduled date for the meeting. */
-    private LocalDate dueDate;
+    private java.time.LocalDate dueDate;
 }

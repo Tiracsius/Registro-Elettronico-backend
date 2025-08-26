@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for SubjectClass entities.
  */
 @Repository
-public interface SubjectClassRepository extends JpaRepository<SubjectClass, Long> {
+public interface SubjectClassRepository extends JpaRepository<SubjectClass, java.util.UUID> {
 }

@@ -12,15 +12,18 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
+/**
+ * Configures Spring Security for the application. It sets up JWT
+ * authentication, configures password encoding and defines which
+ * endpoints are publicly accessible.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -33,24 +36,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                // Disable CSRF for the H2 console and general API usage (JWT based auth is stateless)
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/h2-console/**")
                         .disable()
                 )
-                .cors(withDefaults()) // Attiva il CORS configurato in CorsConfig
-                .headers(headers -> headers
-                        .frameOptions().disable() // Consente l'uso dei frame per H2 console
-                )
+                // Enable CORS using configuration defined in CorsConfig
+                .cors(withDefaults())
+                // Allow the H2 console to be displayed in a frame
+                .headers(headers -> headers.frameOptions().disable())
+                // Define which endpoints are publicly accessible
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                // Use stateless sessions since JWT is used for auth
                 .sessionManagement(sess -> sess
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+                // Configure authentication provider and JWT filter
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 

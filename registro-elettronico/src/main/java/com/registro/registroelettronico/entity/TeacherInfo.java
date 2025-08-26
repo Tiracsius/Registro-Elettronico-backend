@@ -16,8 +16,10 @@ import lombok.*;
 @Builder
 public class TeacherInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     @Column(nullable = false)
     private String firstName;
@@ -28,7 +30,11 @@ public class TeacherInfo {
     @Column(nullable = false, unique = true)
     private String email;
 
-    /** A unique identifier associated with the teacher (e.g. fiscal code). */
-    @Column(nullable = false, unique = true)
-    private String cardId;
+    /**
+     * Credential used for authenticating the teacher. Each teacher has one
+     * credential, linking them to the login system.
+     */
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "credential_id", unique = true)
+    private Credential credential;
 }

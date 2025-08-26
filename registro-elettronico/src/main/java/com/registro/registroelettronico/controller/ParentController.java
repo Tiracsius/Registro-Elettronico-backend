@@ -24,7 +24,7 @@ public class ParentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ParentInfo> getById(@PathVariable Long id) {
+    public ResponseEntity<ParentInfo> getById(@PathVariable java.util.UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -34,12 +34,12 @@ public class ParentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ParentInfo> update(@PathVariable Long id, @RequestBody ParentInfo data) {
+    public ResponseEntity<ParentInfo> update(@PathVariable java.util.UUID id, @RequestBody ParentInfo data) {
         return ResponseEntity.ok(service.update(id, data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

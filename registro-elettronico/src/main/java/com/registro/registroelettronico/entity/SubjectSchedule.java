@@ -20,18 +20,20 @@ import java.time.LocalTime;
 @Builder
 public class SubjectSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     /** Day of the week the lesson occurs (e.g. MONDAY). */
     @Enumerated(EnumType.STRING)
-    private DayOfWeek day;
+    private java.time.DayOfWeek day;
 
     /** Start time of the lesson. */
-    private LocalTime hourStart;
+    private java.time.LocalTime hourStart;
 
     /** End time of the lesson. */
-    private LocalTime hourEnd;
+    private java.time.LocalTime hourEnd;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")
@@ -39,5 +41,5 @@ public class SubjectSchedule {
 
     /** How often this lesson recurs. */
     @Enumerated(EnumType.STRING)
-    private Frequency frequency;
+    private com.registro.registroelettronico.enums.Frequency frequency;
 }

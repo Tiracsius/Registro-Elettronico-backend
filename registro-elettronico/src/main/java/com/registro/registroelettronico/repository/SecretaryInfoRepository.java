@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for SecretaryInfo entities.
  */
 @Repository
-public interface SecretaryInfoRepository extends JpaRepository<SecretaryInfo, Long> {
+public interface SecretaryInfoRepository extends JpaRepository<SecretaryInfo, java.util.UUID> {
 }

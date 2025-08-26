@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for SubjectSchedule entities.
  */
 @Repository
-public interface SubjectScheduleRepository extends JpaRepository<SubjectSchedule, Long> {
+public interface SubjectScheduleRepository extends JpaRepository<SubjectSchedule, java.util.UUID> {
 }

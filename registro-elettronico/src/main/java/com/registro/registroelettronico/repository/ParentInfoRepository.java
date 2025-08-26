@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * parents.
  */
 @Repository
-public interface ParentInfoRepository extends JpaRepository<ParentInfo, Long> {
+public interface ParentInfoRepository extends JpaRepository<ParentInfo, java.util.UUID> {
 }

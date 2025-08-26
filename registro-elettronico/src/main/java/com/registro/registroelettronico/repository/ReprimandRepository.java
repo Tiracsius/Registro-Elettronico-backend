@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for Reprimand entities.
  */
 @Repository
-public interface ReprimandRepository extends JpaRepository<Reprimand, Long> {
+public interface ReprimandRepository extends JpaRepository<Reprimand, java.util.UUID> {
 }

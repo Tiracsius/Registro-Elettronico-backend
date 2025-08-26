@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for Homework entities.
  */
 @Repository
-public interface HomeworkRepository extends JpaRepository<Homework, Long> {
+public interface HomeworkRepository extends JpaRepository<Homework, java.util.UUID> {
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for Meeting entities.
  */
 @Repository
-public interface MeetingRepository extends JpaRepository<Meeting, Long> {
+public interface MeetingRepository extends JpaRepository<Meeting, java.util.UUID> {
 }

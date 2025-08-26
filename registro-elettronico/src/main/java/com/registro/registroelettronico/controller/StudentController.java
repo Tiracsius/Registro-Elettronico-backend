@@ -24,7 +24,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentInfo> getById(@PathVariable Long id) {
+    public ResponseEntity<StudentInfo> getById(@PathVariable java.util.UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -34,12 +34,12 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentInfo> update(@PathVariable Long id, @RequestBody StudentInfo data) {
+    public ResponseEntity<StudentInfo> update(@PathVariable java.util.UUID id, @RequestBody StudentInfo data) {
         return ResponseEntity.ok(service.update(id, data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

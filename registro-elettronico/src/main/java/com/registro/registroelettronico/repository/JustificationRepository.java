@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for Justification entities.
  */
 @Repository
-public interface JustificationRepository extends JpaRepository<Justification, Long> {
+public interface JustificationRepository extends JpaRepository<Justification, java.util.UUID> {
 }

@@ -21,7 +21,7 @@ public class StudentService {
         return repository.findAll();
     }
 
-    public StudentInfo getById(Long id) {
+    public StudentInfo getById(java.util.UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Student not found with id " + id));
     }
@@ -30,17 +30,18 @@ public class StudentService {
         return repository.save(student);
     }
 
-    public StudentInfo update(Long id, StudentInfo data) {
+    public StudentInfo update(java.util.UUID id, StudentInfo data) {
         StudentInfo existing = getById(id);
         existing.setFirstName(data.getFirstName());
         existing.setLastName(data.getLastName());
         existing.setEmail(data.getEmail());
-        existing.setCardId(data.getCardId());
         existing.setParent(data.getParent());
+        existing.setSchoolClass(data.getSchoolClass());
+        existing.setEnrollmentDate(data.getEnrollmentDate());
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(java.util.UUID id) {
         repository.deleteById(id);
     }
 }

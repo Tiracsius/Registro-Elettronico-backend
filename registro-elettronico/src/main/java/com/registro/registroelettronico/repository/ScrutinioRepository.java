@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for Scrutinio entities.
  */
 @Repository
-public interface ScrutinioRepository extends JpaRepository<Scrutinio, Long> {
+public interface ScrutinioRepository extends JpaRepository<Scrutinio, java.util.UUID> {
 }

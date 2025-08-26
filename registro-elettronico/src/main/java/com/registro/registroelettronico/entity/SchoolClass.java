@@ -9,15 +9,17 @@ import lombok.*;
  * represent the section (e.g. "1A").
  */
 @Entity
-@Table(name = "class")
+@Table(name = "school_class")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class SchoolClass {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     @Column(nullable = false)
     private String name;

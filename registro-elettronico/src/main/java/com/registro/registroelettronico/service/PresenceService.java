@@ -21,7 +21,7 @@ public class PresenceService {
         return repository.findAll();
     }
 
-    public PresenceRecord getById(Long id) {
+    public PresenceRecord getById(java.util.UUID id) {
         return repository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Presence record not found with id " + id));
     }
@@ -30,15 +30,15 @@ public class PresenceService {
         return repository.save(record);
     }
 
-    public PresenceRecord update(Long id, PresenceRecord data) {
+    public PresenceRecord update(java.util.UUID id, PresenceRecord data) {
         PresenceRecord existing = getById(id);
         existing.setDate(data.getDate());
         existing.setStatus(data.getStatus());
-        existing.setStudentClass(data.getStudentClass());
+        existing.setStudent(data.getStudent());
         return repository.save(existing);
     }
 
-    public void delete(Long id) {
+    public void delete(java.util.UUID id) {
         repository.deleteById(id);
     }
 }

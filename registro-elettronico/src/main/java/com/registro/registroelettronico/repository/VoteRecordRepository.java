@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for VoteRecord entities.
  */
 @Repository
-public interface VoteRecordRepository extends JpaRepository<VoteRecord, Long> {
+public interface VoteRecordRepository extends JpaRepository<VoteRecord, java.util.UUID> {
 }

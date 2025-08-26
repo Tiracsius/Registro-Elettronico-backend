@@ -19,18 +19,25 @@ import java.time.LocalDate;
 @Builder
 public class Scrutinio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
+    private java.util.UUID id;
 
     @Enumerated(EnumType.STRING)
-    private ScrutinioStatus status;
+    private com.registro.registroelettronico.enums.ScrutinioStatus status;
 
-    private LocalDate date;
+    private java.time.LocalDate date;
 
     /** The overall grade assigned to the student for the course. */
     private Double vote;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_class_id")
-    private StudentClass studentClass;
+    @JoinColumn(name = "student_id")
+    private StudentInfo student;
+
+    /** The subject class for which the final evaluation is recorded. */
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_class_id")
+    private SubjectClass subjectClass;
 }

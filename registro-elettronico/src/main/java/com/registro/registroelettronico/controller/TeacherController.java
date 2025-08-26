@@ -24,7 +24,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TeacherInfo> getById(@PathVariable Long id) {
+    public ResponseEntity<TeacherInfo> getById(@PathVariable java.util.UUID id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -34,12 +34,12 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TeacherInfo> update(@PathVariable Long id, @RequestBody TeacherInfo data) {
+    public ResponseEntity<TeacherInfo> update(@PathVariable java.util.UUID id, @RequestBody TeacherInfo data) {
         return ResponseEntity.ok(service.update(id, data));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

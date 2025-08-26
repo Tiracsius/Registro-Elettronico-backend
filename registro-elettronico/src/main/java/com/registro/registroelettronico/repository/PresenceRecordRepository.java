@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for PresenceRecord entities.
  */
 @Repository
-public interface PresenceRecordRepository extends JpaRepository<PresenceRecord, Long> {
+public interface PresenceRecordRepository extends JpaRepository<PresenceRecord, java.util.UUID> {
 }

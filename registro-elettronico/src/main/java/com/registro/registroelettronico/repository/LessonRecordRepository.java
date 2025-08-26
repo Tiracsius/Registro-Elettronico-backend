@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Repository for LessonRecord entities.
  */
 @Repository
-public interface LessonRecordRepository extends JpaRepository<LessonRecord, Long> {
+public interface LessonRecordRepository extends JpaRepository<LessonRecord, java.util.UUID> {
 }

@@ -4,9 +4,165 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d133891d-695e-4578-ab2b-a0ed253fecf7" name="Changes" comment=":D">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/config/CorsConfig.java" afterDir="false" />
+    <list default="true" id="d133891d-695e-4578-ab2b-a0ed253fecf7" name="Changes" comment="Implementazione CorsConfig x il forntend">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/ClassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/ClassController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/ParentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/ParentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/PresenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/PresenceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/SubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/SubjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/dto/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/DayEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/DayEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Homework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Homework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Justification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Justification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/LessonRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/LessonRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Meeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Meeting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/ParentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/ParentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/PresenceRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/PresenceRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Reprimand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Reprimand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SchoolClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SchoolClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Scrutinio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Scrutinio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SecretaryInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SecretaryInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/StudentClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/StudentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/StudentInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SubjectClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SubjectClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SubjectSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/SubjectSchedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/TeacherInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/TeacherInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/TestEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/TestEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/VoteRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/entity/VoteRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/DayEventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/DayEventRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/HomeworkRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/HomeworkRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/JustificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/JustificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/LessonRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/LessonRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/MeetingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/MeetingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ParentInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ParentInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/PresenceRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/PresenceRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ReprimandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ReprimandRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SchoolClassRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SchoolClassRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ScrutinioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/ScrutinioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SecretaryInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SecretaryInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/StudentClassRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/StudentInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/StudentInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectClassRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectClassRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectScheduleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/SubjectScheduleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/TeacherInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/TeacherInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/VoteRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/repository/VoteRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/ParentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/ParentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/PresenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/PresenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/SchoolClassService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/SchoolClassService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/SubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/SubjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/TeacherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/registro/registroelettronico/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/RegistroElettronicoApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/config/CorsConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/AuthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/ClassController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/ParentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/PresenceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/StudentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/SubjectController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/controller/TeacherController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/dto/AuthRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/dto/AuthResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/dto/RegisterRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/DayEvent$DayEventBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/DayEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Homework$HomeworkBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Homework.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Justification$JustificationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Justification.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/LessonRecord$LessonRecordBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/LessonRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Meeting$MeetingBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Meeting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/ParentInfo$ParentInfoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/ParentInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/PresenceRecord$PresenceRecordBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/PresenceRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Reprimand$ReprimandBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Reprimand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SchoolClass$SchoolClassBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SchoolClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Scrutinio$ScrutinioBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Scrutinio.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SecretaryInfo$SecretaryInfoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SecretaryInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/StudentClass$StudentClassBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/StudentClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/StudentInfo$StudentInfoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/StudentInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Subject$SubjectBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/Subject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SubjectClass$SubjectClassBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SubjectClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SubjectSchedule$SubjectScheduleBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/SubjectSchedule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/TeacherInfo$TeacherInfoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/TeacherInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/TestEntity$TestEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/TestEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/User$UserBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/VoteRecord$VoteRecordBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/entity/VoteRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/Frequency.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/MeetingStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/PresenceStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/ScrutinioStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/TestType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/enums/UserRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/DayEventRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/HomeworkRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/JustificationRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/LessonRecordRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/MeetingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/ParentInfoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/PresenceRecordRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/ReprimandRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/SchoolClassRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/ScrutinioRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/SecretaryInfoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/StudentClassRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/StudentInfoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/SubjectClassRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/SubjectRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/SubjectScheduleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/TeacherInfoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/TestRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/repository/VoteRecordRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/security/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/security/JwtService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/AuthService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/ParentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/PresenceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/SchoolClassService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/StudentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/SubjectService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/TeacherService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/registro/registroelettronico/service/UserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/schema.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +206,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.RegistroElettronicoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;EjranMustafoski&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ejran/IdeaProjects/Registro-Elettronico-backend/registro-elettronico&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.RegistroElettronicoApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "EjranMustafoski",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ejran/IdeaProjects/Registro-Elettronico-backend/registro-elettronico/pom.xml",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="RegistroElettronicoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.registro.registroelettronico.RegistroElettronicoApplication" />
@@ -123,11 +281,20 @@
       <option name="project" value="LOCAL" />
       <updated>1756136436899</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implementazione CorsConfig x il forntend">
+      <option name="closed" value="true" />
+      <created>1756137244569</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1756137244569</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":D" />
-    <option name="LAST_COMMIT_MESSAGE" value=":D" />
+    <MESSAGE value="Implementazione CorsConfig x il forntend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementazione CorsConfig x il forntend" />
   </component>
 </project>
