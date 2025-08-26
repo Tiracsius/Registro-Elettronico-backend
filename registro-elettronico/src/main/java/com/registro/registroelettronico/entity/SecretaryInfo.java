@@ -15,8 +15,7 @@ import lombok.*;
 @Builder
 public class SecretaryInfo {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 

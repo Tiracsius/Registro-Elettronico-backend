@@ -18,8 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Justification {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
@@ -31,7 +30,7 @@ public class Justification {
     private String message;
 
     /** Timestamp when the justification was created. */
-    private java.time.LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     /** The presence record this justification refers to. */
     @OneToOne(optional = false, fetch = FetchType.LAZY)

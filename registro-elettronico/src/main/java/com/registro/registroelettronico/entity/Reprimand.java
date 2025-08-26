@@ -18,8 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Reprimand {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
@@ -38,5 +37,5 @@ public class Reprimand {
     @JoinColumn(name = "subject_class_id")
     private SubjectClass subjectClass;
 
-    private java.time.LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 }

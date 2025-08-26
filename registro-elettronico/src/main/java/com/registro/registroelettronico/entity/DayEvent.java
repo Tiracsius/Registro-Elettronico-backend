@@ -18,13 +18,12 @@ import java.time.LocalDate;
 @Builder
 public class DayEvent {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
     /** Date of the event (no time component). */
-    private java.time.LocalDate date;
+    private LocalDate date;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id")

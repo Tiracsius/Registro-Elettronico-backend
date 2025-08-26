@@ -3,6 +3,8 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Stores parent or guardian information. A parent can be associated
  * with one or more students via the StudentInfo entity.
@@ -15,8 +17,7 @@ import lombok.*;
 @Builder
 public class ParentInfo {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
@@ -36,4 +37,7 @@ public class ParentInfo {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "credential_id", unique = true)
     private Credential credential;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StudentInfo> students;
 }

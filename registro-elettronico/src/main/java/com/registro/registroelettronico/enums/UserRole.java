@@ -8,12 +8,6 @@ package com.registro.registroelettronico.enums;
  */
 public enum UserRole {
     /**
-     * Administrator role. Administrators can manage other users and have
-     * full access to the system.
-     */
-    ADMIN,
-
-    /**
      * Role for students. Students can view their own grades, presence
      * records and receive homework and notes from teachers.
      */

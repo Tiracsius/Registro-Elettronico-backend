@@ -3,6 +3,8 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * Represents a teacher employed by the school. Teachers can teach
  * multiple subjects across multiple classes via the SubjectClass
@@ -16,8 +18,7 @@ import lombok.*;
 @Builder
 public class TeacherInfo {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
@@ -37,4 +38,7 @@ public class TeacherInfo {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "credential_id", unique = true)
     private Credential credential;
+
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+    private List<SubjectClass> subjects;
 }

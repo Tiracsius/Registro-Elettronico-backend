@@ -3,6 +3,8 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 /**
  * Associates a subject with a class and a teacher. This mapping allows
  * the same subject to be taught by different teachers across different
@@ -16,10 +18,9 @@ import lombok.*;
 @Builder
 public class SubjectClass {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")

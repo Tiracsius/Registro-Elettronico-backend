@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Records what happened during a lesson. Teachers can use this
@@ -18,10 +19,9 @@ import java.time.LocalDateTime;
 @Builder
 public class LessonRecord {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")
@@ -39,5 +39,5 @@ public class LessonRecord {
     private DayEvent dayEvent;
 
     /** Timestamp when the record was created. */
-    private java.time.LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 }

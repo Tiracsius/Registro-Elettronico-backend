@@ -3,6 +3,9 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 /**
  * Represents a student enrolled in the school. Each student may
  * optionally have a parent associated with them.
@@ -15,8 +18,7 @@ import lombok.*;
 @Builder
 public class StudentInfo {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private java.util.UUID id;
 
@@ -32,12 +34,8 @@ public class StudentInfo {
     @Column(nullable = false, unique = true)
     private String email;
 
-    /**
-     * Date when the student enrolled in the school. This can be used
-     * for historical queries and reporting.
-     */
-    private java.time.LocalDate enrollmentDate;
-
+    @Column(nullable = false)
+    private LocalDate birthDate;
     /**
      * Many students can share the same parent. This association is
      * optional because some students may not have a parent defined in the
@@ -55,4 +53,10 @@ public class StudentInfo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id")
     private SchoolClass schoolClass;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<PresenceRecord> presences;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<Reprimand> reprimands;
 }
