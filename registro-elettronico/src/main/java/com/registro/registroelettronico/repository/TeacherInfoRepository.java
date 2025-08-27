@@ -4,9 +4,11 @@ import com.registro.registroelettronico.entity.TeacherInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 /**
  * Repository for TeacherInfo entities.
  */
 @Repository
-public interface TeacherInfoRepository extends JpaRepository<TeacherInfo, java.util.UUID> {
+public interface TeacherInfoRepository extends JpaRepository<TeacherInfo, UUID> {
 }

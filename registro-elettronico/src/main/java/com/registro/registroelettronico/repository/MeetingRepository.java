@@ -4,9 +4,11 @@ import com.registro.registroelettronico.entity.Meeting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 /**
  * Repository for Meeting entities.
  */
 @Repository
-public interface MeetingRepository extends JpaRepository<Meeting, java.util.UUID> {
+public interface MeetingRepository extends JpaRepository<Meeting, UUID> {
 }
