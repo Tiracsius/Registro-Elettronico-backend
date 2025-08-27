@@ -32,7 +32,7 @@ public class PresenceService {
 
     public PresenceRecord update(java.util.UUID id, PresenceRecord data) {
         PresenceRecord existing = getById(id);
-        existing.setDate(data.getDate());
+        existing.setCreatedAt(data.getCreatedAt());
         existing.setStatus(data.getStatus());
         existing.setStudent(data.getStudent());
         return repository.save(existing);

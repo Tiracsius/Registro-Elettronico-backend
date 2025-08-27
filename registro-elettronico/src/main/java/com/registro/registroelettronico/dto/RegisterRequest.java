@@ -1,6 +1,9 @@
 package com.registro.registroelettronico.dto;
 
+import java.time.LocalDate;
+
 import com.registro.registroelettronico.enums.UserRole;
+
 import lombok.Data;
 
 /**
@@ -21,6 +24,7 @@ public class RegisterRequest {
     private String firstName;
     private String lastName;
     private String email;
+    private LocalDate birthDate;
 
     /**
      * Identifier of the parent to be associated with a newly registered

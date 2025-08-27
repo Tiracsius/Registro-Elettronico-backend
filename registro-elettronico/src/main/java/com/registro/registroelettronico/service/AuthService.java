@@ -65,8 +65,9 @@ public class AuthService {
                         .email(request.getEmail())
                         .parent(parent)
                         .schoolClass(schoolClass)
-                        .enrollmentDate(LocalDate.now())
+                        .birthDate(request.getBirthDate())
                         .build();
+                student.setCredential(credential);
                 studentInfoRepository.save(student);
             }
             case PARENT -> {
@@ -96,9 +97,6 @@ public class AuthService {
                         .build();
                 secretary.setCredential(credential);
                 secretaryInfoRepository.save(secretary);
-            }
-            case ADMIN -> {
-                // No domain entity is created for administrators
             }
         }
 
