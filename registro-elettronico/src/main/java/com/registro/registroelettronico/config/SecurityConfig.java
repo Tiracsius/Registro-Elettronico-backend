@@ -38,11 +38,9 @@ public class SecurityConfig {
         http
                 // Disable CSRF for the H2 console and general API usage (JWT based auth is stateless)
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**")
                         .disable()
                 )
-                // Enable CORS using configuration defined in CorsConfig
-                .cors(withDefaults())
+                
                 // Allow the H2 console to be displayed in a frame
                 .headers(headers -> headers.frameOptions().disable())
                 // Define which endpoints are publicly accessible
