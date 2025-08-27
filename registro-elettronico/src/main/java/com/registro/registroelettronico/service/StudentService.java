@@ -37,7 +37,7 @@ public class StudentService {
         existing.setEmail(data.getEmail());
         existing.setParent(data.getParent());
         existing.setSchoolClass(data.getSchoolClass());
-        existing.setEnrollmentDate(data.getEnrollmentDate());
+        existing.setBirthDate(data.getBirthDate());
         return repository.save(existing);
     }
 
