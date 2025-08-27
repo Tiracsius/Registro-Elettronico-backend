@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Represents a scheduled meeting (colloquio) between a parent and a
@@ -19,10 +20,9 @@ import java.time.LocalDate;
 @Builder
 public class Meeting {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
@@ -33,8 +33,8 @@ public class Meeting {
     private SubjectClass subjectClass;
 
     @Enumerated(EnumType.STRING)
-    private com.registro.registroelettronico.enums.MeetingStatus status;
+    private MeetingStatus status;
 
     /** Scheduled date for the meeting. */
-    private java.time.LocalDate dueDate;
+    private LocalDate dueDate;
 }

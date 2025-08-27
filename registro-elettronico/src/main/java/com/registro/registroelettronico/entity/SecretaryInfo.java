@@ -3,6 +3,8 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 /**
  * Represents a member of the administrative staff. Secretaries are
  * responsible for managing classes, schedules and other tasks.
@@ -17,7 +19,7 @@ public class SecretaryInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Column(nullable = false)
     private String firstName;

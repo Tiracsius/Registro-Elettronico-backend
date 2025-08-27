@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Represents a homework assignment given by a teacher. Homework is
@@ -18,10 +20,9 @@ import java.time.LocalDate;
 @Builder
 public class Homework {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")
@@ -31,11 +32,8 @@ public class Homework {
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    /** Deadline for submitting the homework. */
-    private java.time.LocalDate deadline;
+    private LocalDate dueDate;
 
-    /** The day event on which this homework was assigned. */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "day_event_id")
-    private DayEvent dayEvent;
+    /** Timestamp when the record was created. */
+    private LocalDateTime createdAt;
 }

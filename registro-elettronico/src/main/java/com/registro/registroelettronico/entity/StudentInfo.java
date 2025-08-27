@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents a student enrolled in the school. Each student may
@@ -20,7 +21,7 @@ public class StudentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     /** Student's given name. */
     @Column(nullable = false)
@@ -45,6 +46,10 @@ public class StudentInfo {
     @JoinColumn(name = "parent_id")
     private ParentInfo parent;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "credential_id", unique = true)
+    private Credential credential;
+
     /**
      * The class the student currently belongs to. A student can only be
      * enrolled in a single class at a time. If the student changes
@@ -54,9 +59,17 @@ public class StudentInfo {
     @JoinColumn(name = "class_id")
     private SchoolClass schoolClass;
 
+
+
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
-    private List<PresenceRecord> presences;
+    private List<PresenceRecord> presenceRecords;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Reprimand> reprimands;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<Scrutinio> scrutinios;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<VoteRecord> voteRecords;
 }

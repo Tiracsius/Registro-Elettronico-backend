@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents a class or section within the school. A class groups
@@ -21,7 +22,7 @@ public class SchoolClass {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
@@ -40,4 +41,7 @@ public class SchoolClass {
 
     @OneToMany(mappedBy = "schoolClass", fetch = FetchType.LAZY)
     private List<SubjectClass> subjects;
+
+    @OneToMany(mappedBy = "schoolClass", fetch = FetchType.LAZY)
+    private List<StudentInfo> students;
 }

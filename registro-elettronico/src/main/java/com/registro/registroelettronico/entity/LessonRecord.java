@@ -3,6 +3,7 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -34,9 +35,7 @@ public class LessonRecord {
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "day_event_id")
-    private DayEvent dayEvent;
+    private LocalDate dueDate;
 
     /** Timestamp when the record was created. */
     private LocalDateTime createdAt;

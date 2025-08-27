@@ -4,6 +4,10 @@ import com.registro.registroelettronico.enums.TestType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 /**
  * Represents an assessment scheduled by a teacher. Each test is
  * associated with a subject class and recorded within a DayEvent.
@@ -14,12 +18,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TestEntity {
+public class Test {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")
@@ -28,7 +31,8 @@ public class TestEntity {
     @Enumerated(EnumType.STRING)
     private TestType type;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "day_event_id")
-    private DayEvent dayEvent;
+    private LocalDate dueDate;
+
+    /** Timestamp when the record was created. */
+    private LocalDateTime createdAt;
 }

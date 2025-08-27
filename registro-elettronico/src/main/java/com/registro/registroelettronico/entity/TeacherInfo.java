@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents a teacher employed by the school. Teachers can teach
@@ -20,7 +21,7 @@ public class TeacherInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Column(nullable = false)
     private String firstName;

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Represents a grade assigned to a student for a specific subject
@@ -18,16 +19,15 @@ import java.time.LocalDate;
 @Builder
 public class VoteRecord {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     /** Numeric representation of the grade (e.g. 6.5). */
     private Double vote;
 
     /** Date when the grade was recorded. */
-    private java.time.LocalDate date;
+    private LocalDate createdAt;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

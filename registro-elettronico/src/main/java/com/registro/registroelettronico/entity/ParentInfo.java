@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Stores parent or guardian information. A parent can be associated
@@ -19,7 +20,7 @@ public class ParentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Column(nullable = false)
     private String firstName;
@@ -40,4 +41,7 @@ public class ParentInfo {
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentInfo> students;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    private List<Meeting> meetings;
 }

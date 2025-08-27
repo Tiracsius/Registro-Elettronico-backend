@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.UUID;
 
 /**
  * Defines when a subject is taught for a given class. This allows
@@ -22,17 +23,17 @@ public class SubjectSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     /** Day of the week the lesson occurs (e.g. MONDAY). */
     @Enumerated(EnumType.STRING)
-    private java.time.DayOfWeek day;
+    private DayOfWeek day;
 
     /** Start time of the lesson. */
-    private java.time.LocalTime hourStart;
+    private LocalTime hourStart;
 
     /** End time of the lesson. */
-    private java.time.LocalTime hourEnd;
+    private LocalTime hourEnd;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_class_id")
@@ -40,5 +41,5 @@ public class SubjectSchedule {
 
     /** How often this lesson recurs. */
     @Enumerated(EnumType.STRING)
-    private com.registro.registroelettronico.enums.Frequency frequency;
+    private Frequency frequency;
 }

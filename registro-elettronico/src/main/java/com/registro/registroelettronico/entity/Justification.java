@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Represents a justification provided by a parent for a student's
@@ -20,7 +21,7 @@ public class Justification {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     // No direct reference to a parent is stored. The parent who submits a
     // justification can be inferred via the associated presence record and

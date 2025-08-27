@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Represents the final evaluation of a student in a class. The
@@ -19,15 +20,14 @@ import java.time.LocalDate;
 @Builder
 public class Scrutinio {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @org.hibernate.annotations.GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
-    private com.registro.registroelettronico.enums.ScrutinioStatus status;
+    private ScrutinioStatus status;
 
-    private java.time.LocalDate date;
+    private LocalDate createdAt;
 
     /** The overall grade assigned to the student for the course. */
     private Double vote;
@@ -36,8 +36,4 @@ public class Scrutinio {
     @JoinColumn(name = "student_id")
     private StudentInfo student;
 
-    /** The subject class for which the final evaluation is recorded. */
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject_class_id")
-    private SubjectClass subjectClass;
 }

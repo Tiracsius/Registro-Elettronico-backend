@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Tracks a student's presence or absence for a given day. Presence
@@ -20,13 +21,13 @@ public class PresenceRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private java.util.UUID id;
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     private PresenceStatus status;
 
     /** Date of the attendance record. */
-    private LocalDate date;
+    private LocalDate createdAt;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

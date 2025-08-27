@@ -3,6 +3,7 @@ package com.registro.registroelettronico.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,4 +34,10 @@ public class SubjectClass {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     private TeacherInfo teacher;
+
+    @OneToMany(mappedBy = "subjectClass", fetch = FetchType.LAZY)
+    private List<SubjectSchedule> schedules;
+
+    @OneToMany(mappedBy = "subjectClass", fetch = FetchType.LAZY)
+    private List<Meeting> meetings;
 }
