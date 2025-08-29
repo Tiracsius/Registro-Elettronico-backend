@@ -1,14 +1,18 @@
 package com.registro.registroelettronico.repository;
 
-import com.registro.registroelettronico.entity.StudentInfo;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import com.registro.registroelettronico.entity.StudentInfo;
 
 /**
  * Repository for StudentInfo entities.
  */
 @Repository
 public interface StudentInfoRepository extends JpaRepository<StudentInfo, UUID> {
+	Optional<StudentInfo> findByCredentialId(UUID credentialId);
+
 }
