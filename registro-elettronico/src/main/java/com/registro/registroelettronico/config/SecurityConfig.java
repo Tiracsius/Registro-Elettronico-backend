@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions().disable())
                 // Define which endpoints are publicly accessible
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/auth/**", "/h2-console/**",  "/v3/api-docs/**","/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 // Use stateless sessions since JWT is used for auth
