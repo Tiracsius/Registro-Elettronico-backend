@@ -14,5 +14,5 @@ import com.registro.registroelettronico.entity.StudentInfo;
 @Repository
 public interface StudentInfoRepository extends JpaRepository<StudentInfo, UUID> {
 	Optional<StudentInfo> findByCredentialId(UUID credentialId);
-
+    boolean existsByEmail(String email);
 }
