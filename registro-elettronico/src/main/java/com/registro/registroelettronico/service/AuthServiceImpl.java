@@ -5,7 +5,6 @@ import java.util.UUID;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +59,6 @@ public class AuthServiceImpl implements AuthService{
     private final TeacherInfoRepository teacherInfoRepository;
     private final SecretaryInfoRepository secretaryInfoRepository;
     private final SchoolClassRepository schoolClassRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -82,7 +80,7 @@ public class AuthServiceImpl implements AuthService{
         credential = credentialRepository.save(credential);
 
         // Create the Correct User Object based on the role
-        switch(request.getRole()) {
+        switch(credential.getRole()) {
             case STUDENT -> {
                 if (!(request instanceof StudentRequestDTO student)) {
                     throw new IllegalArgumentException("Invalid request type for STUDENT role");
@@ -140,26 +138,22 @@ public class AuthServiceImpl implements AuthService{
 		case STUDENT -> {
 			StudentInfo student = studentInfoRepository.findByCredentialId(id)
 					.orElseThrow(() -> new RuntimeException("Student not found"));
-			yield UserResponseDTO.builder().id(student.getId()).firstName(student.getFirstName())
-					.lastName(student.getLastName()).role(UserRole.STUDENT).email(student.getEmail()).build();
+			yield studentMapper.toUserResponse(student);
 		}
 		case PARENT -> {
 			ParentInfo parent = parentInfoRepository.findByCredentialId(id)
 					.orElseThrow(() -> new RuntimeException("Parent not found"));
-			yield UserResponseDTO.builder().id(parent.getId()).firstName(parent.getFirstName())
-					.lastName(parent.getLastName()).role(UserRole.PARENT).email(parent.getEmail()).build();
+			yield parentMapper.toUserResponse(parent);
 		}
 		case SECRETARY -> {
 			SecretaryInfo secretary = secretaryInfoRepository.findByCredentialId(id)
 					.orElseThrow(() -> new RuntimeException("Secretary not found"));
-			yield UserResponseDTO.builder().id(secretary.getId()).firstName(secretary.getFirstName())
-					.lastName(secretary.getLastName()).role(UserRole.SECRETARY).email(secretary.getEmail()).build();
+			yield secretaryMapper.toUserResponse(secretary);
 		}
 		case TEACHER -> {
 			TeacherInfo teacher = teacherInfoRepository.findByCredentialId(id)
 					.orElseThrow(() -> new RuntimeException("Teacher not found"));
-			yield UserResponseDTO.builder().id(teacher.getId()).firstName(teacher.getFirstName())
-					.lastName(teacher.getLastName()).role(UserRole.TEACHER).email(teacher.getEmail()).build();
+			yield teacherMapper.toUserResponse(teacher);
 		}
 		};
 	}
