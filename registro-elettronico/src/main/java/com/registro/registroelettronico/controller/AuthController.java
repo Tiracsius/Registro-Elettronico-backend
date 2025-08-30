@@ -3,7 +3,10 @@ package com.registro.registroelettronico.controller;
 import com.registro.registroelettronico.dto.AuthRequest;
 import com.registro.registroelettronico.dto.AuthResponse;
 import com.registro.registroelettronico.dto.RegisterRequest;
+import com.registro.registroelettronico.dto.UserRequestDTO;
 import com.registro.registroelettronico.service.AuthService;
+import com.registro.registroelettronico.service.AuthServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +22,9 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
+    public ResponseEntity<AuthResponse> register( @Valid @RequestBody UserRequestDTO request) {
+        authService.register(request);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")

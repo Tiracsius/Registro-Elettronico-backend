@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,9 +19,9 @@ public class StudentRequestDTO extends UserRequestDTO{
     private LocalDate birthDate;
 
     @NotNull
-    private Long parentId;
+    private UUID parentId;
 
     @NotNull
-    private Long classId;
+    private UUID classId;
 
 }
