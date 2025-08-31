@@ -15,8 +15,8 @@ import java.util.List;
 @SuperBuilder
 public class TeacherRequestDTO extends UserRequestDTO{
 
-    @NotEmpty
+    @NotEmpty(message="Subjects are required")
     @Valid
-    private List<SubjectClassRequestDTO> materie;
+    private List<SubjectClassRequestDTO> subjects;
 
 }

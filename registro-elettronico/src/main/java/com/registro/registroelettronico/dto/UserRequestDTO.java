@@ -29,18 +29,17 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class UserRequestDTO {
-    @NotNull
+    @NotNull(message="Role is required")
     private UserRole role;
 
-    @NotBlank
+    @NotBlank(message="Firstname is required")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message="Lastname is required")
     private String lastName;
 
-    @Email
-    @NotBlank
+    @Email(message="Email invalid")
+    @NotBlank(message="Email is required")
     private String email;
-
 
 }

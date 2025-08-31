@@ -12,7 +12,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class UserResponseDTO {
-	
 	private UUID id;
 	private String firstName;
 	private String lastName;
