@@ -23,6 +23,7 @@ import com.registro.registroelettronico.entity.SecretaryInfo;
 import com.registro.registroelettronico.entity.StudentInfo;
 import com.registro.registroelettronico.entity.TeacherInfo;
 import com.registro.registroelettronico.enums.UserRole;
+import com.registro.registroelettronico.exception.EmailAlreadyExistsException;
 import com.registro.registroelettronico.mapper.ParentMapper;
 import com.registro.registroelettronico.mapper.SecretaryMapper;
 import com.registro.registroelettronico.mapper.StudentMapper;
@@ -71,8 +72,7 @@ public class AuthServiceImpl implements AuthService{
                 parentInfoRepository.existsByEmail(request.getEmail()) ||
                 secretaryInfoRepository.existsByEmail(request.getEmail())) {
 
-            // throw new EmailAlreadyExistsException
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException(request.getEmail());
         }
 
         // Create Credential Object based on the User information
