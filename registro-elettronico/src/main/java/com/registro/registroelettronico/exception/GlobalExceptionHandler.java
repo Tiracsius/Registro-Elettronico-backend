@@ -66,7 +66,8 @@ public class GlobalExceptionHandler {
 		StudentNotFoundException.class,
 		SchoolClassNotFoundException.class,
 		SecretaryNotFoundException.class,
-		TeacherNotFoundException.class
+		TeacherNotFoundException.class,
+		SubjectNotFoundException.class,
 	})
 	public ResponseEntity<ApiErrorResponse> handleNotFounException(RuntimeException ex) {
 		ApiErrorResponse response = ApiErrorResponse.builder()

@@ -1,12 +1,18 @@
 package com.registro.registroelettronico.controller;
 
-import com.registro.registroelettronico.entity.Subject;
-import com.registro.registroelettronico.service.SubjectService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.registro.registroelettronico.dto.SubjectResponseDTO;
+import com.registro.registroelettronico.service.SubjectService;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * REST controller exposing endpoints to manage subjects.
@@ -16,31 +22,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SubjectController {
 
-    private final SubjectService service;
+    private final SubjectService subjectService;
 
     @GetMapping
-    public ResponseEntity<List<Subject>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<List<SubjectResponseDTO>> getAll() {
+        return ResponseEntity.ok(subjectService.getAllSubjects());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Subject> getById(@PathVariable java.util.UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+    public ResponseEntity<SubjectResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(subjectService.getSubjectById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Subject> create(@RequestBody Subject subject) {
-        return ResponseEntity.ok(service.create(subject));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Subject> update(@PathVariable java.util.UUID id, @RequestBody Subject data) {
-        return ResponseEntity.ok(service.update(id, data));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 }
