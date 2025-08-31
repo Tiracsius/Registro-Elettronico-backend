@@ -1,5 +1,6 @@
 package com.registro.registroelettronico.dto;
 
+import java.time.Instant;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -15,6 +16,9 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Builder
 public class ApiErrorResponse {
+	
+	@Builder.Default
+    private Instant timestamp = Instant.now();
 	
 	private String message;
 	private int status;
