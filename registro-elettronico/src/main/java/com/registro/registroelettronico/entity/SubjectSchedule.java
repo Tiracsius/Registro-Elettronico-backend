@@ -27,6 +27,7 @@ public class SubjectSchedule {
 
     /** Day of the week the lesson occurs (e.g. MONDAY). */
     @Enumerated(EnumType.STRING)
+    @Column(name="day_of_week")
     private DayOfWeek day;
 
     /** Start time of the lesson. */
