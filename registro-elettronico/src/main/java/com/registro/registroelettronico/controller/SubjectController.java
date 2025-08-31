@@ -25,12 +25,12 @@ public class SubjectController {
     private final SubjectService subjectService;
 
     @GetMapping
-    public ResponseEntity<List<SubjectResponseDTO>> getAll() {
+    public ResponseEntity<List<SubjectResponseDTO>> getAllSubject() {
         return ResponseEntity.ok(subjectService.getAllSubjects());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubjectResponseDTO> getById(@PathVariable UUID id) {
+    public ResponseEntity<SubjectResponseDTO> getSubjectById(@PathVariable UUID id) {
         return ResponseEntity.ok(subjectService.getSubjectById(id));
     }
 

@@ -1,12 +1,19 @@
 package com.registro.registroelettronico.controller;
 
-import com.registro.registroelettronico.entity.SchoolClass;
-import com.registro.registroelettronico.service.SchoolClassService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.registro.registroelettronico.dto.SchoolClassResponseDTO;
+import com.registro.registroelettronico.service.SchoolClassService;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * REST controller exposing endpoints to manage school classes.
@@ -16,31 +23,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClassController {
 
-    private final SchoolClassService service;
+    private final SchoolClassService schoolClassservice;
 
     @GetMapping
-    public ResponseEntity<List<SchoolClass>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<List<SchoolClassResponseDTO>> getAllSchoolClasses() {
+        return ResponseEntity.ok(schoolClassservice.getAllSchoolClasses());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SchoolClass> getById(@PathVariable java.util.UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+    public ResponseEntity<SchoolClassResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(schoolClassservice.getSchoolClassById(id));
     }
 
     @PostMapping
-    public ResponseEntity<SchoolClass> create(@RequestBody SchoolClass schoolClass) {
-        return ResponseEntity.ok(service.create(schoolClass));
+    public ResponseEntity<Void> create() {
+    	schoolClassservice.createSchoolClasses();
+        return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<SchoolClass> update(@PathVariable java.util.UUID id, @RequestBody SchoolClass data) {
-        return ResponseEntity.ok(service.update(id, data));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 }

@@ -1,11 +1,25 @@
 package com.registro.registroelettronico.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+
+import com.registro.registroelettronico.enums.SchoolClassLabel;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents a class or section within the school. A class groups
@@ -25,7 +39,8 @@ public class SchoolClass {
     private UUID id;
 
     @Column(nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private SchoolClassLabel name;
 
     /**
      * The starting academic year for this class (e.g. 2024 for the
