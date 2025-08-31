@@ -24,6 +24,11 @@ import com.registro.registroelettronico.entity.StudentInfo;
 import com.registro.registroelettronico.entity.TeacherInfo;
 import com.registro.registroelettronico.enums.UserRole;
 import com.registro.registroelettronico.exception.EmailAlreadyExistsException;
+import com.registro.registroelettronico.exception.ParentNotFoundException;
+import com.registro.registroelettronico.exception.SchoolClassNotFoundException;
+import com.registro.registroelettronico.exception.SecretaryNotFoundException;
+import com.registro.registroelettronico.exception.StudentNotFoundException;
+import com.registro.registroelettronico.exception.TeacherNotFoundException;
 import com.registro.registroelettronico.mapper.ParentMapper;
 import com.registro.registroelettronico.mapper.SecretaryMapper;
 import com.registro.registroelettronico.mapper.StudentMapper;
@@ -82,40 +87,29 @@ public class AuthServiceImpl implements AuthService{
         // Create the Correct User Object based on the role
         switch(credential.getRole()) {
             case STUDENT -> {
-                if (!(request instanceof StudentRequestDTO student)) {
-                    throw new IllegalArgumentException("Invalid request type for STUDENT role");
-                }
+            	StudentRequestDTO student = (StudentRequestDTO) request;
                 ParentInfo parentInfo = parentInfoRepository.findById(student.getParentId())
-                        .orElseThrow(() -> new RuntimeException("Parent not found"));
+                        .orElseThrow(() -> new ParentNotFoundException(student.getParentId()));
                 SchoolClass schoolClass = schoolClassRepository.findById(student.getClassId())
-                        .orElseThrow(() -> new RuntimeException("Class not found"));
+                        .orElseThrow(() -> new SchoolClassNotFoundException(student.getClassId()));
                 StudentInfo studentInfo = studentMapper.toEntity(student, parentInfo, schoolClass);
                 studentInfo.setCredential(credential);
                 studentInfoRepository.save(studentInfo);
             }
             case PARENT -> {
-                if (!(request instanceof ParentRequestDTO parent)) {
-                    throw new IllegalArgumentException("Invalid request type for PARENT role");
-                }
-
+            	ParentRequestDTO parent = (ParentRequestDTO) request;
                 ParentInfo parentInfo = parentMapper.toEntity(parent);
                 parentInfo.setCredential(credential);
                 parentInfoRepository.save(parentInfo);
             }
             case TEACHER -> {
-                if (!(request instanceof TeacherRequestDTO teacher)) {
-                    throw new IllegalArgumentException("Invalid request type for TEACHER role");
-                }
-
+                TeacherRequestDTO teacher = (TeacherRequestDTO) request;
                 TeacherInfo teacherInfo = teacherMapper.toEntity(teacher);
                 teacherInfo.setCredential(credential);
                 teacherInfoRepository.save(teacherInfo);
             }
             case SECRETARY -> {
-                if (!(request instanceof SecretaryRequestDTO secretary)) {
-                    throw new IllegalArgumentException("Invalid request type for SECRETARY role");
-                }
-
+            	SecretaryRequestDTO secretary = (SecretaryRequestDTO) request;
                 SecretaryInfo secretaryInfo = secretaryMapper.toEntity(secretary);
                 secretaryInfo.setCredential(credential);
                 secretaryInfoRepository.save(secretaryInfo);
@@ -137,22 +131,22 @@ public class AuthServiceImpl implements AuthService{
 		return switch (role) {
 		case STUDENT -> {
 			StudentInfo student = studentInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new RuntimeException("Student not found"));
+					.orElseThrow(() -> new StudentNotFoundException(id));
 			yield studentMapper.toUserResponse(student);
 		}
 		case PARENT -> {
 			ParentInfo parent = parentInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new RuntimeException("Parent not found"));
+					.orElseThrow(() -> new ParentNotFoundException(id));
 			yield parentMapper.toUserResponse(parent);
 		}
 		case SECRETARY -> {
 			SecretaryInfo secretary = secretaryInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new RuntimeException("Secretary not found"));
+					.orElseThrow(() -> new SecretaryNotFoundException(id));
 			yield secretaryMapper.toUserResponse(secretary);
 		}
 		case TEACHER -> {
 			TeacherInfo teacher = teacherInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new RuntimeException("Teacher not found"));
+					.orElseThrow(() -> new TeacherNotFoundException(id));
 			yield teacherMapper.toUserResponse(teacher);
 		}
 		};

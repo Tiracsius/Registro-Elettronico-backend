@@ -60,4 +60,19 @@ public class GlobalExceptionHandler {
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.CONFLICT);
 	}
+	
+	@ExceptionHandler({
+		ParentNotFoundException.class,
+		StudentNotFoundException.class,
+		SchoolClassNotFoundException.class,
+		SecretaryNotFoundException.class,
+		TeacherNotFoundException.class
+	})
+	public ResponseEntity<ApiErrorResponse> handleNotFounException(RuntimeException ex) {
+		ApiErrorResponse response = ApiErrorResponse.builder()
+				.message(ex.getMessage())
+				.status(HttpStatus.NOT_FOUND.value())
+				.build();
+		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	}
 }
