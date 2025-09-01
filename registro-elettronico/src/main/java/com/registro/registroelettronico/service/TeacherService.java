@@ -14,5 +14,4 @@ public interface TeacherService {
 	public UserResponseDTO getTeacherByCredentialId(UUID credentialId);
 	public UserResponseDTO createTeacher(TeacherRequestDTO teacher, Credential credential);
 	
-  
 }

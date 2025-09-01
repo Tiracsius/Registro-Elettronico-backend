@@ -17,25 +17,13 @@ import com.registro.registroelettronico.dto.TeacherRequestDTO;
 import com.registro.registroelettronico.dto.UserRequestDTO;
 import com.registro.registroelettronico.dto.UserResponseDTO;
 import com.registro.registroelettronico.entity.Credential;
-import com.registro.registroelettronico.entity.ParentInfo;
-import com.registro.registroelettronico.entity.SchoolClass;
 import com.registro.registroelettronico.entity.SecretaryInfo;
-import com.registro.registroelettronico.entity.StudentInfo;
-import com.registro.registroelettronico.entity.TeacherInfo;
 import com.registro.registroelettronico.enums.UserRole;
 import com.registro.registroelettronico.exception.EmailAlreadyExistsException;
-import com.registro.registroelettronico.exception.ParentNotFoundException;
-import com.registro.registroelettronico.exception.SchoolClassNotFoundException;
 import com.registro.registroelettronico.exception.SecretaryNotFoundException;
-import com.registro.registroelettronico.exception.StudentNotFoundException;
-import com.registro.registroelettronico.exception.TeacherNotFoundException;
-import com.registro.registroelettronico.mapper.ParentMapper;
 import com.registro.registroelettronico.mapper.SecretaryMapper;
-import com.registro.registroelettronico.mapper.StudentMapper;
-import com.registro.registroelettronico.mapper.TeacherMapper;
 import com.registro.registroelettronico.repository.CredentialRepository;
 import com.registro.registroelettronico.repository.ParentInfoRepository;
-import com.registro.registroelettronico.repository.SchoolClassRepository;
 import com.registro.registroelettronico.repository.SecretaryInfoRepository;
 import com.registro.registroelettronico.repository.StudentInfoRepository;
 import com.registro.registroelettronico.repository.TeacherInfoRepository;
@@ -51,12 +39,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
-    private final TeacherMapper teacherMapper;
-    private final SecretaryMapper secretaryMapper;
-
     private final ParentService parentService;
     private final StudentService studentService;
     private final TeacherService teacherService;
+    private final SecretaryService secretaryService;
 
     private final CredentialGeneratorService credentialGeneratorService;
     private final CredentialRepository credentialRepository;
@@ -64,7 +50,6 @@ public class AuthServiceImpl implements AuthService{
     private final ParentInfoRepository parentInfoRepository;
     private final TeacherInfoRepository teacherInfoRepository;
     private final SecretaryInfoRepository secretaryInfoRepository;
-    private final SchoolClassRepository schoolClassRepository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -100,9 +85,7 @@ public class AuthServiceImpl implements AuthService{
             }
             case SECRETARY -> {
             	SecretaryRequestDTO secretary = (SecretaryRequestDTO) request;
-                SecretaryInfo secretaryInfo = secretaryMapper.toEntity(secretary);
-                secretaryInfo.setCredential(credential);
-                secretaryInfoRepository.save(secretaryInfo);
+            	secretaryService.createSecretary(secretary, credential);
             }
         }
     }
@@ -119,15 +102,10 @@ public class AuthServiceImpl implements AuthService{
 
 	private UserResponseDTO getProfileDTOByRole(UUID id, UserRole role) {
 		return switch (role) {
-		case STUDENT -> studentService.getStudentByCredentialId(id);
-		case PARENT -> parentService.getParentByCredentialId(id);
-
-		case SECRETARY -> {
-			SecretaryInfo secretary = secretaryInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new SecretaryNotFoundException(id));
-			yield secretaryMapper.toUserResponse(secretary);
-		}
-		case TEACHER -> teacherService.getTeacherByCredentialId(id);
+			case STUDENT -> studentService.getStudentByCredentialId(id);
+			case PARENT -> parentService.getParentByCredentialId(id);
+			case SECRETARY -> secretaryService.getSecretaryByCredentialId(id);
+			case TEACHER -> teacherService.getTeacherByCredentialId(id);
 		};
 	}
 }
