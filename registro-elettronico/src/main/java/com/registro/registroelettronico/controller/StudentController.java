@@ -30,4 +30,8 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
+    @GetMapping("/class/{classId}")
+    public ResponseEntity<List<UserResponseDTO>> getAllStudentsBySchoolClassId(@PathVariable UUID classId) {
+        return ResponseEntity.ok(studentService.getAllStudentsByClassId(classId));
+    }
 }

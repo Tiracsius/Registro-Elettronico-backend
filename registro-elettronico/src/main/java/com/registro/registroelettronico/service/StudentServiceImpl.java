@@ -52,6 +52,15 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public List<UserResponseDTO> getAllStudentsByClassId(UUID classId) {
+        List<UserResponseDTO> students = studentInfoRepository.findAllBySchoolClassId(classId)
+                .stream()
+                .map(studentMapper::toUserResponse)
+                .toList();
+        return students;
+    }
+
+    @Override
     public UserResponseDTO createStudent(StudentRequestDTO student, Credential credential) {
         ParentInfo parentInfo = parentInfoRepository.findById(student.getParentId())
                 .orElseThrow(() -> new ParentNotFoundException(student.getParentId()));

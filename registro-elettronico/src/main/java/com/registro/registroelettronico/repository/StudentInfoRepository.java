@@ -1,5 +1,6 @@
 package com.registro.registroelettronico.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,4 +16,5 @@ import com.registro.registroelettronico.entity.StudentInfo;
 public interface StudentInfoRepository extends JpaRepository<StudentInfo, UUID> {
 	Optional<StudentInfo> findByCredentialId(UUID credentialId);
     boolean existsByEmail(String email);
+    List<StudentInfo> findAllBySchoolClassId(UUID classId);
 }

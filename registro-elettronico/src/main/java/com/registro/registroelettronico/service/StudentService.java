@@ -13,6 +13,7 @@ public interface StudentService {
     public List<UserResponseDTO> getAllStudents();
     public UserResponseDTO getStudentById(UUID id);
     public UserResponseDTO getStudentByCredentialId(UUID credentialId);
+    public List<UserResponseDTO> getAllStudentsByClassId(UUID classId);
     public UserResponseDTO createStudent(StudentRequestDTO student, Credential credential);
 
 }
