@@ -3,6 +3,7 @@ package com.registro.registroelettronico;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,9 +15,15 @@ import com.registro.registroelettronico.dto.TeacherRequestDTO;
 import com.registro.registroelettronico.dto.UserRequestDTO;
 import com.registro.registroelettronico.entity.ParentInfo;
 import com.registro.registroelettronico.entity.SchoolClass;
+import com.registro.registroelettronico.entity.Subject;
+import com.registro.registroelettronico.entity.SubjectClass;
+import com.registro.registroelettronico.entity.TeacherInfo;
 import com.registro.registroelettronico.enums.UserRole;
 import com.registro.registroelettronico.repository.ParentInfoRepository;
 import com.registro.registroelettronico.repository.SchoolClassRepository;
+import com.registro.registroelettronico.repository.SubjectClassRepository;
+import com.registro.registroelettronico.repository.SubjectRepository;
+import com.registro.registroelettronico.repository.TeacherInfoRepository;
 import com.registro.registroelettronico.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,8 +35,12 @@ public class DataInitializer implements CommandLineRunner{
 	private final AuthService authService;
 	private final SchoolClassRepository schoolClassRepository;
 	private final ParentInfoRepository parentInfoRepository;
+	private final TeacherInfoRepository teacherInfoRepository;
+	private final SubjectRepository subjectRepository;
+	private final SubjectClassRepository subjectClassRepository;
 	@Override
 	public void run(String... args) throws Exception {
+	
 		// Create Secretary
 		UserRequestDTO secretary = SecretaryRequestDTO.builder()
 				.role(UserRole.SECRETARY)
@@ -87,10 +98,11 @@ public class DataInitializer implements CommandLineRunner{
 		        .lastName("teacher3")
 		        .build();
 		authService.register(teacher3);
-		
+		List<TeacherInfo> teachers = teacherInfoRepository.findAll();
 		// Create Student
 		List<SchoolClass> classes = schoolClassRepository.findAll();
 		List<ParentInfo> parents = parentInfoRepository.findAll();
+		List<Subject> subjects = subjectRepository.findAll();
 		AtomicInteger studentCounter = new AtomicInteger(1); 
 		AtomicInteger parentIndex = new AtomicInteger(0);  
 
@@ -109,6 +121,24 @@ public class DataInitializer implements CommandLineRunner{
 			authService.register(student);
 		    parentIndex.getAndIncrement();
 		});
+		
+		
+		// Create SubjectClass
+		List<SubjectClass> subjectClasses = classes.stream()
+			    .flatMap(schoolClass ->
+			        subjects.stream()
+			            .flatMap(subject ->
+			                teachers.stream()
+			                        .map(teacher -> SubjectClass.builder()
+			                            .teacher(teacher)
+			                            .schoolClass(schoolClass)
+			                            .subject(subject)
+			                            .build()
+			                        )
+			            )
+			    )
+			    .collect(Collectors.toList());
+		subjectClassRepository.saveAll(subjectClasses);
 	}
 
 }
