@@ -56,6 +56,7 @@ public class AuthServiceImpl implements AuthService{
 
     private final ParentService parentService;
     private final StudentService studentService;
+    private final TeacherService teacherService;
 
     private final CredentialGeneratorService credentialGeneratorService;
     private final CredentialRepository credentialRepository;
@@ -95,9 +96,7 @@ public class AuthServiceImpl implements AuthService{
             }
             case TEACHER -> {
                 TeacherRequestDTO teacher = (TeacherRequestDTO) request;
-                TeacherInfo teacherInfo = teacherMapper.toEntity(teacher);
-                teacherInfo.setCredential(credential);
-                teacherInfoRepository.save(teacherInfo);
+                teacherService.createTeacher(teacher, credential);
             }
             case SECRETARY -> {
             	SecretaryRequestDTO secretary = (SecretaryRequestDTO) request;
@@ -128,11 +127,7 @@ public class AuthServiceImpl implements AuthService{
 					.orElseThrow(() -> new SecretaryNotFoundException(id));
 			yield secretaryMapper.toUserResponse(secretary);
 		}
-		case TEACHER -> {
-			TeacherInfo teacher = teacherInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new TeacherNotFoundException(id));
-			yield teacherMapper.toUserResponse(teacher);
-		}
+		case TEACHER -> teacherService.getTeacherByCredentialId(id);
 		};
 	}
 }
