@@ -51,11 +51,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
-    private final StudentMapper studentMapper;
     private final TeacherMapper teacherMapper;
     private final SecretaryMapper secretaryMapper;
 
     private final ParentService parentService;
+    private final StudentService studentService;
 
     private final CredentialGeneratorService credentialGeneratorService;
     private final CredentialRepository credentialRepository;
@@ -87,13 +87,7 @@ public class AuthServiceImpl implements AuthService{
         switch(credential.getRole()) {
             case STUDENT -> {
             	StudentRequestDTO student = (StudentRequestDTO) request;
-                ParentInfo parentInfo = parentInfoRepository.findById(student.getParentId())
-                        .orElseThrow(() -> new ParentNotFoundException(student.getParentId()));
-                SchoolClass schoolClass = schoolClassRepository.findById(student.getClassId())
-                        .orElseThrow(() -> new SchoolClassNotFoundException(student.getClassId()));
-                StudentInfo studentInfo = studentMapper.toEntity(student, parentInfo, schoolClass);
-                studentInfo.setCredential(credential);
-                studentInfoRepository.save(studentInfo);
+                studentService.createStudent(student, credential);
             }
             case PARENT -> {
             	ParentRequestDTO parent = (ParentRequestDTO) request;
@@ -126,14 +120,9 @@ public class AuthServiceImpl implements AuthService{
 
 	private UserResponseDTO getProfileDTOByRole(UUID id, UserRole role) {
 		return switch (role) {
-		case STUDENT -> {
-			StudentInfo student = studentInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new StudentNotFoundException(id));
-			yield studentMapper.toUserResponse(student);
-		}
-		case PARENT -> {
-			yield parentService.getParentByCredentialId(id);
-		}
+		case STUDENT -> studentService.getStudentByCredentialId(id);
+		case PARENT -> parentService.getParentByCredentialId(id);
+
 		case SECRETARY -> {
 			SecretaryInfo secretary = secretaryInfoRepository.findByCredentialId(id)
 					.orElseThrow(() -> new SecretaryNotFoundException(id));

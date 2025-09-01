@@ -1,5 +1,6 @@
 package com.registro.registroelettronico.controller;
 
+import com.registro.registroelettronico.dto.UserResponseDTO;
 import com.registro.registroelettronico.entity.StudentInfo;
 import com.registro.registroelettronico.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * REST controller exposing endpoints to manage students.
@@ -16,31 +18,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentService service;
+    private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<List<StudentInfo>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<List<UserResponseDTO>> getAllStudents() {
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentInfo> getById(@PathVariable java.util.UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<StudentInfo> create(@RequestBody StudentInfo student) {
-        return ResponseEntity.ok(service.create(student));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<StudentInfo> update(@PathVariable java.util.UUID id, @RequestBody StudentInfo data) {
-        return ResponseEntity.ok(service.update(id, data));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 }

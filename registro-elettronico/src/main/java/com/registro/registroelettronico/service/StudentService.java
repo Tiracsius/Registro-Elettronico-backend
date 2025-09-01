@@ -1,47 +1,18 @@
 package com.registro.registroelettronico.service;
 
-import com.registro.registroelettronico.entity.StudentInfo;
-import com.registro.registroelettronico.repository.StudentInfoRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+
+import com.registro.registroelettronico.dto.StudentRequestDTO;
+import com.registro.registroelettronico.dto.UserResponseDTO;
+import com.registro.registroelettronico.entity.Credential;
 
 import java.util.List;
+import java.util.UUID;
 
-/**
- * Service providing CRUD operations for students.
- */
-@Service
-@RequiredArgsConstructor
-public class StudentService {
+public interface StudentService {
 
-    private final StudentInfoRepository repository;
+    public List<UserResponseDTO> getAllStudents();
+    public UserResponseDTO getStudentById(UUID id);
+    public UserResponseDTO getStudentByCredentialId(UUID credentialId);
+    public UserResponseDTO createStudent(StudentRequestDTO student, Credential credential);
 
-    public List<StudentInfo> getAll() {
-        return repository.findAll();
-    }
-
-    public StudentInfo getById(java.util.UUID id) {
-        return repository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("Student not found with id " + id));
-    }
-
-    public StudentInfo create(StudentInfo student) {
-        return repository.save(student);
-    }
-
-    public StudentInfo update(java.util.UUID id, StudentInfo data) {
-        StudentInfo existing = getById(id);
-        existing.setFirstName(data.getFirstName());
-        existing.setLastName(data.getLastName());
-        existing.setEmail(data.getEmail());
-        existing.setParent(data.getParent());
-        existing.setSchoolClass(data.getSchoolClass());
-        existing.setBirthDate(data.getBirthDate());
-        return repository.save(existing);
-    }
-
-    public void delete(java.util.UUID id) {
-        repository.deleteById(id);
-    }
 }

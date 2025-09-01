@@ -21,12 +21,12 @@ public class ParentController {
     private final ParentService parentInfoService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> getAll() {
+    public ResponseEntity<List<UserResponseDTO>> getAllParents() {
         return ResponseEntity.ok(parentInfoService.getAllParents());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> getById(@PathVariable UUID id) {
+    public ResponseEntity<UserResponseDTO> getParentById(@PathVariable UUID id) {
         return ResponseEntity.ok(parentInfoService.getParentById(id));
     }
 
