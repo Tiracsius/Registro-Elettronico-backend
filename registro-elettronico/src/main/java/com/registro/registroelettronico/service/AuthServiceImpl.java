@@ -51,14 +51,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
-
-    private final ParentMapper parentMapper;
     private final StudentMapper studentMapper;
     private final TeacherMapper teacherMapper;
     private final SecretaryMapper secretaryMapper;
 
+    private final ParentService parentService;
 
-    private final CredentialGeneratorServiceImpl credentialGeneratorService;
+    private final CredentialGeneratorService credentialGeneratorService;
     private final CredentialRepository credentialRepository;
     private final StudentInfoRepository studentInfoRepository;
     private final ParentInfoRepository parentInfoRepository;
@@ -98,9 +97,7 @@ public class AuthServiceImpl implements AuthService{
             }
             case PARENT -> {
             	ParentRequestDTO parent = (ParentRequestDTO) request;
-                ParentInfo parentInfo = parentMapper.toEntity(parent);
-                parentInfo.setCredential(credential);
-                parentInfoRepository.save(parentInfo);
+                parentService.createParent(parent, credential);
             }
             case TEACHER -> {
                 TeacherRequestDTO teacher = (TeacherRequestDTO) request;
@@ -135,9 +132,7 @@ public class AuthServiceImpl implements AuthService{
 			yield studentMapper.toUserResponse(student);
 		}
 		case PARENT -> {
-			ParentInfo parent = parentInfoRepository.findByCredentialId(id)
-					.orElseThrow(() -> new ParentNotFoundException(id));
-			yield parentMapper.toUserResponse(parent);
+			yield parentService.getParentByCredentialId(id);
 		}
 		case SECRETARY -> {
 			SecretaryInfo secretary = secretaryInfoRepository.findByCredentialId(id)
