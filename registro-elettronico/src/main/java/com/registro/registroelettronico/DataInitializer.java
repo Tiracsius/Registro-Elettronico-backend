@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import com.registro.registroelettronico.entity.*;
+import com.registro.registroelettronico.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,17 +15,7 @@ import com.registro.registroelettronico.dto.SecretaryRequestDTO;
 import com.registro.registroelettronico.dto.StudentRequestDTO;
 import com.registro.registroelettronico.dto.TeacherRequestDTO;
 import com.registro.registroelettronico.dto.UserRequestDTO;
-import com.registro.registroelettronico.entity.ParentInfo;
-import com.registro.registroelettronico.entity.SchoolClass;
-import com.registro.registroelettronico.entity.Subject;
-import com.registro.registroelettronico.entity.SubjectClass;
-import com.registro.registroelettronico.entity.TeacherInfo;
 import com.registro.registroelettronico.enums.UserRole;
-import com.registro.registroelettronico.repository.ParentInfoRepository;
-import com.registro.registroelettronico.repository.SchoolClassRepository;
-import com.registro.registroelettronico.repository.SubjectClassRepository;
-import com.registro.registroelettronico.repository.SubjectRepository;
-import com.registro.registroelettronico.repository.TeacherInfoRepository;
 import com.registro.registroelettronico.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +30,8 @@ public class DataInitializer implements CommandLineRunner{
 	private final TeacherInfoRepository teacherInfoRepository;
 	private final SubjectRepository subjectRepository;
 	private final SubjectClassRepository subjectClassRepository;
+	private final StudentInfoRepository studentInfoRepository;
+	private final VoteRecordRepository voteRecordRepository;
 	@Override
 	public void run(String... args) throws Exception {
 	
@@ -124,7 +118,7 @@ public class DataInitializer implements CommandLineRunner{
 		
 		
 		// Create SubjectClass
-		List<SubjectClass> subjectClasses = classes.stream()
+		List<SubjectClass> subjectClassesRequest = classes.stream()
 			    .flatMap(schoolClass ->
 			        subjects.stream()
 			            .flatMap(subject ->
@@ -138,7 +132,25 @@ public class DataInitializer implements CommandLineRunner{
 			            )
 			    )
 			    .collect(Collectors.toList());
-		subjectClassRepository.saveAll(subjectClasses);
+		subjectClassRepository.saveAll(subjectClassesRequest);
+
+		// Create VoteRecords
+		List<SubjectClass> subjectClasses = subjectClassRepository.findAll();
+		List<StudentInfo> students = studentInfoRepository.findAll();
+		List<VoteRecord> voteRecordsRequest = students.stream()
+				.flatMap(student ->
+						subjectClasses.stream()
+								.map(subjectClass -> VoteRecord.builder()
+										.subjectClass(subjectClass)
+										.createdAt(LocalDate.now())
+										.student(student)
+										.vote(Math.random() * 10.0)
+										.build()
+								)
+				)
+				.collect(Collectors.toList());
+		voteRecordRepository.saveAll(voteRecordsRequest);
+
 	}
 
 }
