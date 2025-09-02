@@ -17,4 +17,7 @@ public interface SubjectClassRepository extends JpaRepository<SubjectClass, UUID
 	
 	@EntityGraph(attributePaths = {"subject", "schoolClass", "teacher"})
 	List<SubjectClass> findAllByTeacherId(UUID id);
+
+	@EntityGraph(attributePaths = {"subject", "schoolClass", "teacher"})
+	List<SubjectClass> findAllBySchoolClassId(UUID id);
 }
