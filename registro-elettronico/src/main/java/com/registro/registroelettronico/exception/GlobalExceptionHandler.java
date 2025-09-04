@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 		EmailAlreadyExistsException.class,
 		SchoolClassesAlreadyExistException.class
 		})
-	public ResponseEntity<ApiErrorResponse> handleEmailAlreadyExistsException(RuntimeException ex) {
+	public ResponseEntity<ApiErrorResponse> handleAlreadyExistsEception(RuntimeException ex) {
 		ApiErrorResponse response = ApiErrorResponse.builder()
 				.message(ex.getMessage())
 				.status(HttpStatus.CONFLICT.value())
@@ -78,5 +78,16 @@ public class GlobalExceptionHandler {
 				.status(HttpStatus.NOT_FOUND.value())
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler({
+			InvalidPresenceRecordStatusException.class,
+	})
+	public ResponseEntity<ApiErrorResponse> handleInvalidExceptions(RuntimeException ex) {
+		ApiErrorResponse response = ApiErrorResponse.builder()
+				.message(ex.getMessage())
+				.status(HttpStatus.BAD_REQUEST.value())
+				.build();
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	}
 }

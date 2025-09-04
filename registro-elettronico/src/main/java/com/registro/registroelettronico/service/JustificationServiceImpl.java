@@ -5,6 +5,7 @@ import com.registro.registroelettronico.dto.JustificationResponseDTO;
 import com.registro.registroelettronico.entity.Justification;
 import com.registro.registroelettronico.entity.PresenceRecord;
 import com.registro.registroelettronico.enums.PresenceStatus;
+import com.registro.registroelettronico.exception.InvalidPresenceRecordStatusException;
 import com.registro.registroelettronico.exception.JustificationNotFoundException;
 import com.registro.registroelettronico.exception.PresenceRecordNotFoundException;
 import com.registro.registroelettronico.mapper.JustificationMapper;
@@ -30,6 +31,9 @@ public class JustificationServiceImpl implements JustificationService{
         PresenceRecord presenceRecord = presenceRecordRepository.findById(request.getPresenceRecordId())
                 .orElseThrow(() -> new PresenceRecordNotFoundException(request.getPresenceRecordId()));
 
+        if (presenceRecord.getStatus() != PresenceStatus.ABSENT) {
+            throw new InvalidPresenceRecordStatusException();
+        }
         Justification justification = justificationMapper.toEntity(request, presenceRecord);
         justificationRepository.save(justification);
         presenceRecord.setStatus(PresenceStatus.EXCUSED);
