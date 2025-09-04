@@ -115,23 +115,25 @@ public class DataInitializer implements CommandLineRunner{
 			authService.register(student);
 		    parentIndex.getAndIncrement();
 		});
-		
-		
+
+
 		// Create SubjectClass
+		AtomicInteger teacherIndex = new AtomicInteger(0);
+		int teacherCount = teachers.size();
+
 		List<SubjectClass> subjectClassesRequest = classes.stream()
-			    .flatMap(schoolClass ->
-			        subjects.stream()
-			            .flatMap(subject ->
-			                teachers.stream()
-			                        .map(teacher -> SubjectClass.builder()
-			                            .teacher(teacher)
-			                            .schoolClass(schoolClass)
-			                            .subject(subject)
-			                            .build()
-			                        )
-			            )
-			    )
-			    .collect(Collectors.toList());
+				.flatMap(schoolClass -> subjects.stream()
+						.map(subject -> {
+							TeacherInfo assignedTeacher = teachers.get(teacherIndex.getAndIncrement() % teacherCount);
+							return SubjectClass.builder()
+									.schoolClass(schoolClass)
+									.subject(subject)
+									.teacher(assignedTeacher)
+									.build();
+						})
+				)
+				.collect(Collectors.toList());
+
 		subjectClassRepository.saveAll(subjectClassesRequest);
 
 		// Create VoteRecords
