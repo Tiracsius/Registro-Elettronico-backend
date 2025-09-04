@@ -1,12 +1,16 @@
 package com.registro.registroelettronico.controller;
 
+import com.registro.registroelettronico.dto.PresenceRecordRequestDTO;
+import com.registro.registroelettronico.dto.PresenceRecordResponseDTO;
 import com.registro.registroelettronico.entity.PresenceRecord;
+import com.registro.registroelettronico.enums.PresenceStatus;
 import com.registro.registroelettronico.service.PresenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * REST controller exposing endpoints to manage presence (attendance) records.
@@ -16,31 +20,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PresenceController {
 
-    private final PresenceService service;
+    private final PresenceService presenceService;
 
-    @GetMapping
-    public ResponseEntity<List<PresenceRecord>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    @GetMapping("/class/{classId}")
+    public ResponseEntity<List<PresenceRecordResponseDTO>> getAllPresenceRecordsByClassId(@PathVariable UUID classId) {
+        return ResponseEntity.ok(presenceService.getAllPresenceRecordsByClassId(classId));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PresenceRecord> getById(@PathVariable java.util.UUID id) {
-        return ResponseEntity.ok(service.getById(id));
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<PresenceRecordResponseDTO>> getAllPresenceRecordsByStudentId(@PathVariable UUID studentId) {
+        return ResponseEntity.ok(presenceService.getAllPresenceRecordByStudentId(studentId));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateStatus(@PathVariable  UUID id, @RequestParam(required = true)PresenceStatus status) {
+        presenceService.updatePresenceRecord(id, status);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
-    public ResponseEntity<PresenceRecord> create(@RequestBody PresenceRecord record) {
-        return ResponseEntity.ok(service.create(record));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<PresenceRecord> update(@PathVariable java.util.UUID id, @RequestBody PresenceRecord data) {
-        return ResponseEntity.ok(service.update(id, data));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable java.util.UUID id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> createPresenceRecords(@RequestBody List<PresenceRecordRequestDTO> presenceRecords) {
+        presenceService.createPresenceRecord(presenceRecords);
+        return ResponseEntity.ok().build();
     }
 }

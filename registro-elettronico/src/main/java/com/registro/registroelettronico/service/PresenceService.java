@@ -1,44 +1,17 @@
 package com.registro.registroelettronico.service;
 
-import com.registro.registroelettronico.entity.PresenceRecord;
-import com.registro.registroelettronico.repository.PresenceRecordRepository;
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.registro.registroelettronico.dto.PresenceRecordRequestDTO;
+import com.registro.registroelettronico.dto.PresenceRecordResponseDTO;
+import com.registro.registroelettronico.enums.PresenceStatus;
 
 import java.util.List;
+import java.util.UUID;
 
-/**
- * Service for managing presence (attendance) records.
- */
-@Service
-@RequiredArgsConstructor
-public class PresenceService {
+public interface PresenceService {
 
-    private final PresenceRecordRepository repository;
+    public List<PresenceRecordResponseDTO> getAllPresenceRecordsByClassId(UUID classId);
+    public List<PresenceRecordResponseDTO> getAllPresenceRecordByStudentId(UUID studentId);
+    public void createPresenceRecord(List<PresenceRecordRequestDTO> request);
+    public void updatePresenceRecord(UUID presenceRecordId, PresenceStatus status);
 
-    public List<PresenceRecord> getAll() {
-        return repository.findAll();
-    }
-
-    public PresenceRecord getById(java.util.UUID id) {
-        return repository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("Presence record not found with id " + id));
-    }
-
-    public PresenceRecord create(PresenceRecord record) {
-        return repository.save(record);
-    }
-
-    public PresenceRecord update(java.util.UUID id, PresenceRecord data) {
-        PresenceRecord existing = getById(id);
-        existing.setCreatedAt(data.getCreatedAt());
-        existing.setStatus(data.getStatus());
-        existing.setStudent(data.getStudent());
-        return repository.save(existing);
-    }
-
-    public void delete(java.util.UUID id) {
-        repository.deleteById(id);
-    }
 }
