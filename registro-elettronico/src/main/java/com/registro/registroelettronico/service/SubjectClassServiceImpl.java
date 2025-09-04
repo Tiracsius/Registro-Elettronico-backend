@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SubjectClassServiceImpl implements SubjectClassService{
+public class 	SubjectClassServiceImpl implements SubjectClassService{
 	
 	private final SubjectClassRepository subjectClassRepository;
 	private final SubjectClassMapper subjectClassMapper;
