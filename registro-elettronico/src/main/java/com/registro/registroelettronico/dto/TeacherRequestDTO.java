@@ -1,22 +1,12 @@
 package com.registro.registroelettronico.dto;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.List;
-
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @SuperBuilder
+@NoArgsConstructor(force = true)
 public class TeacherRequestDTO extends UserRequestDTO{
-
-    @NotEmpty(message="Subjects are required")
-    @Valid
-    private List<SubjectClassRequestDTO> subjects;
 
 }
