@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.fasterxml.jackson.databind.exc.InvalidTypeIdException;
 import com.registro.registroelettronico.dto.ApiErrorResponse;
@@ -15,6 +17,41 @@ import com.registro.registroelettronico.dto.ApiErrorResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public ResponseEntity<ApiErrorResponse> handleMissingRequestParamException(MissingServletRequestParameterException ex) {
+
+	    ApiErrorResponse.FieldError fieldError = ApiErrorResponse.FieldError.builder()
+	            .field(ex.getParameterName())
+	            .message("Request parameter required")
+	            .build();
+
+	    ApiErrorResponse response = ApiErrorResponse.builder()
+	            .message("Validation failed")
+	            .status(HttpStatus.BAD_REQUEST.value())
+	            .errors(List.of(fieldError))
+	            .build();
+
+	    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+	public ResponseEntity<ApiErrorResponse> handleTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+
+	    ApiErrorResponse.FieldError fieldError = ApiErrorResponse.FieldError.builder()
+	            .field(ex.getName())
+	            .message("Invalid value: " + ex.getValue())
+	            .build();
+
+	    ApiErrorResponse response = ApiErrorResponse.builder()
+	            .message("Validation failed")
+	            .status(HttpStatus.BAD_REQUEST.value())
+	            .errors(List.of(fieldError))
+	            .build();
+
+	    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
+
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ApiErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
