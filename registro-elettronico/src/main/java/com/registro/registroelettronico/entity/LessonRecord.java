@@ -35,8 +35,6 @@ public class LessonRecord {
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    private LocalDate dueDate;
-
     /** Timestamp when the record was created. */
     private LocalDateTime createdAt;
 }
