@@ -17,6 +17,7 @@ import com.registro.registroelettronico.dto.LessonRecordRequestDTO;
 import com.registro.registroelettronico.dto.LessonRecordResponseDTO;
 import com.registro.registroelettronico.service.LessonRecordService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -37,7 +38,7 @@ public class LessonRecordController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> createLessonRecord(@RequestBody LessonRecordRequestDTO request) {
+	public ResponseEntity<Void> createLessonRecord(@Valid @RequestBody LessonRecordRequestDTO request) {
 		lessonRecordService.createLessonRecord(request);
 		return ResponseEntity.ok().build();
 	}
