@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.registro.registroelettronico.enums.TestType;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,7 @@ public class TestRequestDTO {
 	private TestType type;
 	
 	@NotNull(message = "Due date is required")
+	@Future(message = "Due date must be in the future")
 	private LocalDate dueDate;
 	
 	@Builder.Default
